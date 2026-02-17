@@ -48,4 +48,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // 1 User n Reviews
+    public function reviews() {
+        return $this->hasMany(Review::class);
+    }
+
+    // 1 User n Collections
+    public function collections() {
+        return $this->hasMany(Collection::class);
+    }
+
+    // Accedo a las películas directamente, pero filtro por el pivot (pending o watched)
+    public function movies() {
+        return $this->belongsToMany(Movie::class)->withPivot('status')->withTimestamps();
+    }
 }
