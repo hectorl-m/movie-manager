@@ -7,17 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    @can('admin')
-                        @foreach ($users as $user)
-                        <ol>
-                        <li><img src="{{ asset(Storage::url($user->profile_photo)) }}" alt="Foto de {{ $user->name }}" style="width: 100px; border-radius: 50%;">{{ __("- Nombre: ".$user->name ." | - Username: ". $user->username ." | - Email: ". $user->email ." | - Rol: ". $user->role) }}</li>
-                        </ol>
-                        @endforeach
-                    @endcan
-                </div>
-            </div>
+            @can('admin')
+                @foreach ($users as $user)
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="margin:10px 0px;">
+                        <div class="p-6 text-gray-900">
+                            <img src="{{ asset(Storage::url($user->profile_photo)) }}" alt="Foto de {{ $user->name }}" style="width: 100px; border-radius: 50%;">{{ __("- Nombre: ".$user->name ." | - Username: ". $user->username ." | - Email: ". $user->email ." | - Rol: ". $user->role) }}
+                        </div>
+                    </div>
+                @endforeach
+            @endcan
         </div>
     </div>
 </x-app-layout>
