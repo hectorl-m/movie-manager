@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tmdb_id')->unique(); 
+            $table->unsignedBigInteger('tmdb_id')->unique(); // unsigned (sin signo), no se guardan numeros negativos
             $table->string('name');
             $table->timestamps();
         });

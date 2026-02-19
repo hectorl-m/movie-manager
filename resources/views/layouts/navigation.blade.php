@@ -17,6 +17,18 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('tmdb.index')" :active="request()->routeIs('tmdb.index')">
+                        {{ __('Search Movies') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
+                        {{ __('My Movies') }}
+                    </x-nav-link>
+                </div>
+
                 @can('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('controlPanel')" :active="request()->routeIs('controlPanel')">
