@@ -52,6 +52,22 @@ class MovieController extends Controller
         return view('movies.index', compact('movies', 'genres'));
     }
 
+    public function show(Movie $movie)
+    {
+        $movie->load(['genres', 'reviews.user']);
+        
+        $averageRating = $movie->reviews()->avg('rating');
+
+        return view('movies.show', compact('movie', 'averageRating'));
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $movie->delete();
+
+        return back()->with('success', 'Movie successfully removed from catalog.');
+    }
+    
     public function toggleList(Request $request, Movie $movie)
     {
         $status = $request->input('status');
@@ -61,12 +77,12 @@ class MovieController extends Controller
 
         if ($existing && $existing->pivot->status === $status) {
             $user->movies()->detach($movie->id);
-            $mensaje = 'Película eliminada de tu lista.';
+            $mensaje = 'Movie removed from your list.';
         } else {
             $user->movies()->syncWithoutDetaching([
                 $movie->id => ['status' => $status]
             ]);
-            $mensaje = $status === 'pending' ? 'Añadida a Pendientes.' : 'Marcada como Vista.';
+            $mensaje = $status === 'pending' ? 'Added to Pending.' : 'Marked as Viewed.';
         }
 
         return back()->with('success', $mensaje);

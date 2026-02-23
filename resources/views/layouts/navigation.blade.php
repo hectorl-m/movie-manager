@@ -93,6 +93,18 @@
             </x-responsive-nav-link>
         </div>
 
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('tmdb.index')" :active="request()->routeIs('tmdb.index')">
+                {{ __('Search Movies') }}
+            </x-responsive-nav-link>
+        </div>
+        
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
+                {{ __('My Movies') }}
+            </x-responsive-nav-link>
+        </div>
+
         @can('admin')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">

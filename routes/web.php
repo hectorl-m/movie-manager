@@ -3,6 +3,7 @@
 use App\Http\Controllers\ControlPanelController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TmdbController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/import/store', [TmdbController::class, 'store'])->name('tmdb.store');
 
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
+    Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+    Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy')->middleware('can:admin');
     Route::post('/movies/{movie}/list', [MovieController::class, 'toggleList'])->name('movies.list.toggle');
+    Route::post('/movies/{movie}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::patch('/reviews/{review}/toggle-visibility', [ReviewController::class, 'toggleVisibility'])->name('reviews.toggleVisibility')->middleware('can:admin');
 });
 
 require __DIR__.'/auth.php';

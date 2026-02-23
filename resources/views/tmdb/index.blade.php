@@ -48,7 +48,7 @@
                             @endforeach
                         </div>
                     @elseif(isset($movies))
-                        <p class="text-gray-500 text-center">No se encontraron películas con ese nombre.</p>
+                        <p class="text-gray-500 text-center">No movies with that name were found.</p>
                     @endif
                 </div>
             </div>
