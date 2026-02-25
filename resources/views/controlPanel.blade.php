@@ -11,7 +11,7 @@
                 @foreach ($users as $user)
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="margin:10px 0px;">
                         <div class="p-6 text-gray-900">
-                            <img src="{{ asset(Storage::url($user->profile_photo)) }}" alt="Foto de {{ $user->name }}" style="width: 100px; border-radius: 50%;">{{ __("- Nombre: ".$user->name ." | - Username: ". $user->username ." | - Email: ". $user->email ." | - Rol: ". $user->role) }}
+                            <img src="{{ asset(Storage::url($user->profile_photo)) }}" alt="Foto de {{ $user->name }}" class="w-20 h-20 rounded-full object-cover shadow-sm">{{ __("- Nombre: ".$user->name ." | - Username: ". $user->username ." | - Email: ". $user->email ." | - Rol: ". $user->role) }}
                         </div>
                     </div>
                 @endforeach
