@@ -57,8 +57,9 @@ class MovieController extends Controller
         $movie->load(['genres', 'reviews.user']);
         
         $averageRating = $movie->reviews()->avg('rating');
+        $collections = auth()->user()->collections()->orderBy('name')->get();
 
-        return view('movies.show', compact('movie', 'averageRating'));
+        return view('movies.show', compact('movie', 'averageRating', 'collections'));
     }
 
     public function destroy(Movie $movie)

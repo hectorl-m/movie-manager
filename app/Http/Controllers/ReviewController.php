@@ -38,7 +38,7 @@ class ReviewController extends Controller
         $review->is_visible = !$review->is_visible;
         $review->save();
 
-        $estado = $review->is_visible ? 'visible' : 'oculta';
-        return back()->with('success', "La reseña ahora está {$estado}.");
+        $state = $review->is_visible ? 'visible' : 'hidden';
+        return back()->with('success', "The review is now {$state}.");
     }
 }

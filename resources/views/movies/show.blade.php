@@ -78,6 +78,34 @@
                             </form>
                         </div>
                     </div>
+
+                    @if($collections->count() > 0)
+                        <div class="mt-6 border-t pt-6">
+                            <h3 class="text-md font-bold mb-3">Add to Collection</h3>
+                            <form action="{{ route('collections.addMovie', $movie) }}" method="POST" class="flex items-center gap-2 max-w-sm">
+                                @csrf
+                                <select name="collection_id" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <option value="">Select a collection...</option>
+                                    @foreach($collections as $collection)
+                                        @php
+                                            $alreadyIn = $collection->movies->contains($movie->id);
+                                        @endphp
+                                        <option value="{{ $collection->id }}" {{ $alreadyIn ? 'disabled' : '' }}>
+                                            {{ $collection->name }} {{ $alreadyIn ? '(Already added)' : '' }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition font-semibold whitespace-nowrap">
+                                    Add
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="mt-6 border-t pt-6">
+                            <p class="text-sm text-gray-500">You don't have any collections yet. <a href="{{ route('collections.index') }}" class="text-indigo-600 hover:underline">Create one here</a>.</p>
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
 

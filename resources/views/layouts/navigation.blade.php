@@ -28,6 +28,12 @@
                         {{ __('My Movies') }}
                     </x-nav-link>
                 </div>
+                
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('collections.index')" :active="request()->routeIs('collections.index')">
+                        {{ __('Collections') }}
+                    </x-nav-link>
+                </div>
 
                 @can('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -102,6 +108,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
                 {{ __('My Movies') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('collections.index')" :active="request()->routeIs('collections.index')">
+                {{ __('Collections') }}
             </x-responsive-nav-link>
         </div>
 
